@@ -1,0 +1,19 @@
+body {
+    font-family:'Chango', cursive;
+}
+
+.jumbotron {
+    height: 350px;
+}
+
+#top-news {
+    height: 350px;
+}
+
+.footer {
+    height: 90px;
+}
+
+#user-img {
+    height: 500px;
+}
