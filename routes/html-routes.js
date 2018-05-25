@@ -14,6 +14,18 @@ module.exports = (app) => {
 
     //index route loads home.html
     app.get("/", (req, res) => {
-        res.sendFile(path.join(__dirname, "../views/index.handlebars"));
+        console.log("index route successful");
+        res.render("index");
     });
+
+    app.get("/login", (req, res) => {
+        console.log("login route successful");
+        res.sendFile(path.join(__dirname, "../views/login.handlebars"));
+    });
+
+    app.get("/user-post", (req, res) => {
+        console.log("user-post route successful");
+        res.sendFile(path.join(__dirname, "../views/user-post.handlebars"));
+    });
+
 };

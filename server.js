@@ -35,8 +35,19 @@ app.use(express.static("public"));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
  
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
+    console.log("index route successful");
     res.render('index');
+});
+
+app.get('/user-post', (req, res) => {
+    console.log("user-post route successful");
+    res.render('../views/user-post.handlebars');
+});
+
+app.get('/login', (req, res) => {
+    console.log("login route successful");
+    res.render('../views/login.handlebars');
 });
  
 app.listen(PORT, () => {
