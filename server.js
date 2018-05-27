@@ -10,6 +10,7 @@ const mysql = require("mysql");
 const exphbs = require("express-handlebars");
 const sequelize = require("sequelize");
 
+
 const app = express();
 const PORT = process.env.PORT || 8081;
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 
 // Static directory
 app.use(express.static("public"));
+
 
 // Routes 
 // ======================================================
