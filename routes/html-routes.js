@@ -28,4 +28,9 @@ module.exports = (app) => {
         res.sendFile(path.join(__dirname, "../views/user-post.handlebars"));
     });
 
+    app.post('/user-post/submit', (req, res, next) => {
+        res.redirect('/user-post');
+        console.log('User post successful');
+    });
+
 };

@@ -77,6 +77,25 @@ app.get('/userPosts/:id', (req, res, next) => {
     res.send(responses);
     }
 })
+//Pulling data from user post
+app.post('/add', (req, res) => {
+    const data = req.body;
+
+    console.log('Data: ', data);
+    res.json(data);
+
+    
+    // TODO
+    // Grab the data
+    // Insert them into sequelize
+
+});
+
+app.get('/send', (req, res) => {
+    // TODO
+    // send all data
+});
+
 //updating userpost
 app.put('userPosts/:id', (req, res, next) => {
     var userpost = userPosts[req.params.id];
@@ -89,6 +108,7 @@ app.get('/login', (req, res) => {
     console.log("login route successful");
     res.render('../views/login.handlebars');
 });
+
 
 db.sequelize.sync().then(function() {    
     console.log("sequelize db sync connected.");

@@ -1,8 +1,8 @@
-
-
 <div class="container-float">
     <nav class="navbar navbar-dark bg-dark">
-        <a id=brand class="navbar-brand" href="#"><h1>OpinNEWS</h1></a>
+        <a id=brand class="navbar-brand" href="#">
+            <h1>OpinNEWS</h1>
+        </a>
     </nav>
     <div class="col-12 row mt-5">
         <div class="card col-md-3">
@@ -29,17 +29,23 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-            </div> <!-- headline container -->
+            </div>
+            <!-- headline container -->
             <div class="row">
                 <div class="col-12 mt-3  ml-3">
                     <div class="list-group">
+                        <div class="post-form">
+                            <form action="/add" method="POST">
+                                <input type="text" name="id">
+                                <button type="submit" id='add'>submit</button>
+                            </form>
+                        </div>
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">List group item heading</h5>
                                 <small>3 days ago</small>
                             </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                             <small>Donec id elit non mi porta.</small>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -47,8 +53,7 @@
                                 <h5 class="mb-1">List group item heading</h5>
                                 <small class="text-muted">3 days ago</small>
                             </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                             <small class="text-muted">Donec id elit non mi porta.</small>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -56,13 +61,83 @@
                                 <h5 class="mb-1">List group item heading</h5>
                                 <small class="text-muted">3 days ago</small>
                             </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                             <small class="text-muted">Donec id elit non mi porta.</small>
                         </a>
                     </div>
-                </div> <!-- " news" list items -->
-            </div> <!-- list item row -->
-        </div> <!--content container -->
+                </div>
+                <!-- " news" list items -->
+            </div>
+            <!-- list item row -->
+        </div>
+        <!--content container -->
     </div>
-</div> <!-- main container -->
+</div>
+<!-- main container -->
+
+
+<script>
+
+
+    /*
+    var getRequest = function(url, cb) {
+        // TODO
+        $.ajax({
+            url: '/add',
+            method: 'GET'
+        })
+        .then(function() {
+            $('input[name="id"]').val('');
+            cb(null, data);
+        })
+        .catch(function(err) {
+            cb(err, data);
+        }); //
+    };
+
+    getRequest('/add', function(err, data) {
+        // TODO
+        // data 
+    });
+
+     getRequest('/add', null,  function(err, data) {
+        // TODO
+        // data 
+    });
+
+    */
+    var sendData = function (event) {
+        const value = $('input[name="id"]').val();
+        event.preventDefault(); // stop it
+        $.ajax({
+            url: '/add',
+            method: 'POST',
+            data: {
+                id: value
+            }
+        })
+        .then(function() {
+            $('input[name="id"]').val('');
+        })
+        .catch(function() {
+            alert('Sorry it did not work');
+        }); //
+
+
+        
+    };
+
+    $('#add').on('click', sendData);
+
+
+
+    // fetch() //
+
+    // axios 
+
+    // XMLHttpRequest
+
+    // $.post();
+
+
+</script>

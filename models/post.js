@@ -17,9 +17,25 @@ var Userpost = sequelize.define('Userpost', {
             notEmpty: true,
         }
     },
+    nickName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
     newPost: {
         type: DataTypes.TEXT,
         allowNull: false,
+    },
+    legit: {
+        type: DataTypes.INTEGER,
+    },
+    seemslegit: {
+        type: DataTypes.INTEGER,
+    },
+    fakeNews: {
+        type: DataTypes.INTEGER,
     },
   }, {
       getterMethods: {
