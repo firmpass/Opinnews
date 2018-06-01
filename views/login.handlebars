@@ -1,1 +1,20 @@
-<h1>LOGIN!!!</h1>
+<script src="https://cdn.auth0.com/js/lock/11.x/lock.min.js"></script>
+<script type="text/javascript">
+    const lock = new Auth0Lock('{{env.AUTH0_CLIENT_ID}}', '{{env.AUTH0_DOMAIN}}');
+    function login() {
+        lock.show({
+            callbackURL: '{{env.AUTH0_CALLBACK_URL}}'
+            , responseType: 'code'
+            , authParams: {
+                scope: 'openid'
+            }
+        });
+    }
+</script>
+
+<div class="login-page clearfix" align="center">
+    <div class="logged-in-box auth0-box logged-in">
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+

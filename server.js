@@ -5,99 +5,122 @@
 
 //Sets up the Express App
 const express = require("express");
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const mysql = require("mysql2");
 const exphbs = require("express-handlebars");
-const Sequelize = require("sequelize");
 const volleyball = require("volleyball");
+const Sequelize = require("sequelize");
 const path = require("path");
-//added userPosts for testing only.
-const userPosts = require("./data/user-post");
-var db = require('./models');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+
+const db = require('./models');
+
+
+const PORT = process.env.PORT || 8081;
+const routes = require('./routes/index.js');
+
+// Configure Passport to use Auth0
+const strategy = new Auth0Strategy(
+    {
+        domain: 'canbat.auth0.com',
+        clientID: '3IXjrTHrpfEpFLMsfASoLUhrU9SEDSAN',
+        clientSecret: 'fUEE7l78zWDF1zrSnZpIkDfiaz062Y7_EZc7kJGa1xmR7oH9_Rg3XdXND2TKnQmw',
+        callbackURL: 'http://localhost:8081/callback'
+    },
+    (accessToken, refreshToken, extraParams, profile, done) => {
+        return done(null, profile);
+    }
+);
+
+passport.use(strategy);
+
+// This can be used to keep a smaller payload
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
 
 const app = express();
-const PORT = process.env.PORT || 8081;
+
 
 // Requiring our models for syncing 
 // ***HERE***
 let connection = new Sequelize('postDB', 'localhost', 'root',{
     dialect: 'mysql'
-})
+});
 
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+app.use(express.static(path.join(__dirname, "public")));
 app.use(volleyball);
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-
-// Static directory
-app.use(express.static(path.join(__dirname, "public")));
-
-// Routes 
-// ======================================================
-// require("./routes/html-routes.js")(app);
-// require("./routes/*****")(app);
-// require("./routes/*****")(app);
-// require("./routes/*****")(app);
-
-// ======================================================
-
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
- 
-app.get('/', (req, res) => {
-    console.log("index route successful");
-    res.render('index');
-});
-
-app.get('/user-post', (req, res) => {
-    console.log("user-post route successful");
-    res.render('../views/user-post.handlebars');
-});
-//Getting all userPosts
-app.get('/userPosts', (req, res, next) => {
-    console.log("returning all userPosts from user-posts.js");
-    res.send(userPosts);
-})
-//Getting userPosts by "id"
-app.get('/userPosts/:id', (req, res, next) => {
-    var id = req.params.id;
-    var query = req.query;
-    var userpost = userPosts[id];
-    var isEmptyQuery = Object.keys(query).length
-    if (!isEmptyQuery) {
-        res.send(userpost);
-    } else {
-
-    var responses = {}
-    Object.keys(query).forEach((key) => {
-        responses[key] = userpost[key]
+app.use(
+    session({
+        secret: 'shhhhhhhhh',
+        resave: true,
+        saveUninitialized: true
     })
-    //http://localhost:8081/userPosts/0?id&name&newPost <- Use in postman
-    res.send(responses);
-    }
-})
-//updating userpost
-app.put('userPosts/:id', (req, res, next) => {
-    var userpost = userPosts[req.params.id];
-    console.log(req.body);
-    Object.assign(userpost, req.body);
-    res.send(userpost);
-})
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/login', (req, res) => {
-    console.log("login route successful");
-    res.render('../views/login.handlebars');
+// Check logged in
+app.use(function(req, res, next) {
+    res.locals.loggedIn = false;
+    if (req.session.passport && typeof req.session.passport.user != 'undefined') {
+        res.locals.loggedIn = true;
+    }
+    next();
 });
 
-db.sequelize.sync().then(function() {    
+app.use('/', routes);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
+
+db.sequelize.sync().then(function() {
     console.log("sequelize db sync connected.");
-app.listen(PORT, () => {
-    console.log("App listening on PORT " + PORT);
-    // db.sync()
-    //     .then(message => {
-    //         console.log("and db is synced");
-    //     })
+    app.listen(PORT, () => {
+        console.log("App listening on PORT " + PORT);
+        // db.sync()
+        //     .then(message => {
+        //         console.log("and db is synced");
+        //     })
     })
 });
 
