@@ -23,6 +23,9 @@ var Userpost = sequelize.define('Userpost', {
     fakeNews: {
         type: DataTypes.INTEGER,
     },
+    user_id: {
+        type: DataTypes.STRING
+    }
 //   }, {
 //       getterMethods: {
 //           fullName: () => {

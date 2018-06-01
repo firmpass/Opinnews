@@ -78,16 +78,14 @@ app.get('/userPosts/:id', (req, res, next) => {
     }
 })
 //Pulling data from user post
-app.post('/add', (req, res) => {
+app.post('/add', (req, res, next) => {
     const data = req.body;
-
     console.log('Data: ', data);
-    res.json(data);
-
-    
-    // TODO
-    // Grab the data
-    // Insert them into sequelize
+    db.Userpost.create(data)
+    .then( () => {
+        res.end();
+    })
+    .catch(next);
 
 });
 
@@ -110,7 +108,7 @@ app.get('/login', (req, res) => {
 });
 
 
-db.sequelize.sync().then(function() {    
+db.sequelize.sync({force: true}).then(function() {    
     console.log("sequelize db sync connected.");
 app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
