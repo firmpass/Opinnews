@@ -3,21 +3,7 @@ module.exports = function (sequelize, DataTypes) {
 
 
 var Userpost = sequelize.define('Userpost', { 
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-        }
-    },
-    lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-        }
-    },
-    nickName: {
+    userName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -37,13 +23,13 @@ var Userpost = sequelize.define('Userpost', {
     fakeNews: {
         type: DataTypes.INTEGER,
     },
-  }, {
-      getterMethods: {
-          fullName: () => {
-            return this.firstName + ' ' + this.lastName;
+//   }, {
+//       getterMethods: {
+//           fullName: () => {
+//             return this.firstName + ' ' + this.lastName;
         
-      }
-  }
+//       }
+//   }
    
 })
     return Userpost;

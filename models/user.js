@@ -4,27 +4,27 @@ module.exports = function (sequelize, DataTypes) {
 
 
     var User = sequelize.define('User', { 
-        firstName: {
+        userName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true,
             }
         },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            }
-        },
-        nickName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            }
-        },
+        // lastName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true,
+        //     }
+        // },
+        // nickName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true,
+        //     }
+        // },
         legit: {
             type: DataTypes.INTEGER,
         },
@@ -33,20 +33,20 @@ module.exports = function (sequelize, DataTypes) {
         },
         fakeNews: {
             type: DataTypes.INTEGER,
-        },
-        password: {
-            type: DataTypes.STRING,
-            validate: {
-                notEmpty: true
-            }
         }
-      }, {
-          getterMethods: {
-              fullName: () => {
-                return this.firstName + ' ' + this.lastName;
+        // password: {
+        //     type: DataTypes.STRING,
+        //     validate: {
+        //         notEmpty: true
+        //     }
+        // }
+    //   }, {
+    //       getterMethods: {
+    //           fullName: () => {
+    //             return this.firstName + ' ' + this.lastName;
             
-          }
-      }
+    //       }
+    //   }
        
     })
         return User;
