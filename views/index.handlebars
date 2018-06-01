@@ -66,5 +66,43 @@
                 </div> <!-- " news" list items -->
             </div> <!-- list item row -->
         </div> <!--content container -->
+        <div class="col-3">
+            <div class="post-form">
+                <form action="/add" method="post">
+                    <textarea type="text" name="id"></textarea>
+                    <br>
+                    <button class="btn" type="submit" id="add">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div> <!-- main container -->
+
+<script>
+
+    var sendData = function (event) {
+        const value = $('input[name="id"]').val();
+        event.preventDefault(); // stop it
+        $.ajax({
+            url: '/add',
+            method: 'POST',
+            data: {
+                username: value
+            }
+        })
+                .then(function() {
+                    $('input[name="id"]').val('');
+                })
+                .catch(function() {
+                    alert('Sorry it did not work');
+                }); //
+
+    };
+
+    $('#add').on('click', sendData);
+
+    var getData = function(event) {
+        event.preventDefault();
+
+    }
+</script>
