@@ -1,4 +1,4 @@
-body {
+#brand {
     font-family:'Chango', cursive;
 }
 
@@ -7,7 +7,7 @@ body {
 }
 
 #top-news {
-    height: 350px;
+    height: 250px;
 }
 
 .footer {
@@ -17,3 +17,4 @@ body {
 #user-img {
     height: 500px;
 }
+
