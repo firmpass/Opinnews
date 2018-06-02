@@ -28,6 +28,8 @@ app.use(volleyball);
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 
 // Static directory
@@ -36,7 +38,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes 
 // ======================================================
 // require("./routes/html-routes.js")(app);
-// require("./routes/*****")(app);
+const apiRoutes = require("./routes/api-routes.js");
 // require("./routes/*****")(app);
 // require("./routes/*****")(app);
 
@@ -45,6 +47,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
  
+
+
 app.get('/', (req, res) => {
     console.log("index route successful");
     res.render('index');
@@ -107,6 +111,8 @@ app.get('/login', (req, res) => {
     res.render('../views/login.handlebars');
 });
 
+
+apiRoutes(app, db);
 
 db.sequelize.sync({force: true}).then(function() {    
     console.log("sequelize db sync connected.");

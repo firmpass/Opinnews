@@ -1,10 +1,10 @@
 <div class="container-float">
     <nav class="navbar navbar-dark bg-dark">
         <a id=brand class="navbar-brand" href="#">
-            <h1>OpinNEWS</h1>
+            <h1 id="mainHeader" style="font-family: 'Chango'; color: #FF3D00">OpinNEWS</h1>
         </a>
     </nav>
-    <div class="col-12 row mt-5">
+    <div id="superCtn" class="col-12 row mt-5">
         <div class="card col-md-3">
             <img id="user-img" class="card-img-top" src="./assets/img/person.jpg" alt="Card image cap">
             <div class="card-body">
@@ -24,9 +24,9 @@
         <div class="col-md-6">
             <div class="row  ml-3">
                 <div class="card col-12">
-                    <img id="top-news" class="card-img-top" src="./assets/img/news-placeholder.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    
+                    <div id="card1" class="card-body">
+                        <p class="card-text">Rate any contribution in three ways "legit, seemslegit and fakeNews" and make your OPINION matter!</p>
                     </div>
                 </div>
             </div>
@@ -113,6 +113,7 @@
             url: '/add',
             method: 'POST',
             data: {
+                //We need to input userName from login data.
                 userName: "Eric",
                 newPost: value, 
             
