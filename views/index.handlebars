@@ -1,15 +1,26 @@
 <div class="container-float">
     <nav class="navbar navbar-dark bg-dark">
+<<<<<<< HEAD
         <a id=brand class="navbar-brand" href="#">
             <h1 id="mainHeader" style="font-family: 'Chango'; color: #FF3D00">OpinNEWS</h1>
         </a>
     </nav>
     <div id="superCtn" class="col-12 row mt-5">
+=======
+        <a id=brand class="navbar-brand" href="#"><h1>OpinNEWS</h1></a>
+    </nav>
+    <div class="col-12 row mt-5">
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
         <div class="card col-md-3">
             <img id="user-img" class="card-img-top" src="./assets/img/person.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
+<<<<<<< HEAD
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+=======
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Cras justo odio</li>
@@ -24,6 +35,7 @@
         <div class="col-md-6">
             <div class="row  ml-3">
                 <div class="card col-12">
+<<<<<<< HEAD
                     
                     <div id="card1" class="card-body">
                         <p class="card-text">Rate any contribution in three ways "legit, seemslegit and fakeNews" and make your OPINION matter!</p>
@@ -144,3 +156,109 @@
 
 
 </script>
+=======
+                    <h5> Post A New Article</h5>
+                    <div action="/add" method="POST" class="form-group">
+                        <label for="usr">Article Author:</label>
+                        <input type="text" class="form-control" id="article-author">
+                        <label for="comment" class="mt-3">Article Body:</label>
+                        <textarea class="form-control" rows="5" id="article-body"></textarea>
+                        <button id="add" class="btn float-right mt-3">Submit Article</button>
+                    </div>
+                </div>
+            </div> <!-- headline container -->
+            <div class="row">
+                <div class="col-12 mt-3  ml-3">
+                    <div class="list-group">
+                        {{# each posts }}
+                            {{> posts/post-block }}
+                        {{/each}}
+                    </div>
+                </div> <!-- " news" list items -->
+            </div> <!-- list item row -->
+        </div> <!--content container -->
+        <div class="col-md-3">
+            <div class="col-md-12 text-center">
+                <h1>RANKING<h2>
+            </div>
+        </div>
+    </div>
+</div> <!-- main container -->
+
+<script>
+    $(document).ready(function() {
+
+
+        var sendData = function (event) {
+            const body = $("#article-body").val();
+            console.log(body);
+            const user = $("#article-author").val();
+            console.log(user);
+            event.preventDefault(); // stop it
+            $.ajax({
+                url: '/api/posts',
+                method: 'POST',
+                data: {
+                    user: user,
+                    body: body,
+
+                }
+            })
+                    .then(function () {
+                        $("#article-body").val('');
+                        $("#article-author").val('');
+                        window.location.reload("/");
+                    })
+                    .catch(function () {
+                        alert('Sorry it did not work');
+                    }); //
+        };
+
+
+        var updateTrueRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/true',
+                method: 'PUT',
+                data: {
+                    id: id
+                }
+
+            });
+        };
+
+        var updateFakeRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/fake',
+                method: 'PUT',
+
+            });
+        };
+
+        var updateQuestionableRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/questionable',
+                method: 'PUT',
+            });
+        };
+
+        $(".legit-news-button").on('click', updateTrueRank);
+        $(".fake-news-button").on('click', updateFakeRank);
+        $(".questionable-news-button").on('click', updateQuestionableRank);
+        $('#add').on('click', sendData);
+    });
+
+
+</script>
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044

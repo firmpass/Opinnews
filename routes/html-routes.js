@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // *********************************************************************************
 // html-routes.js - this file offers a set of routes for sending users to the various html pages
 // *********************************************************************************
@@ -33,4 +34,12 @@ module.exports = (app) => {
         console.log('User post successful');
     });
 
+=======
+var post = require("../models/post");
+
+module.exports = function (app) {
+    app.get("/", function(req, res) {
+            res.render("index", req.body);
+    });
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
 };

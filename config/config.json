@@ -1,8 +1,13 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": null,
     "database": "postDB",
+=======
+    "password": "test",
+    "database": "opinDB",
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

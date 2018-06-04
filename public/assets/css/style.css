@@ -6,3 +6,23 @@
     background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
+#brand {
+    font-family:'Chango', cursive;
+}
+
+.jumbotron {
+    height: 350px;
+}
+
+#top-news {
+    height: 250px;
+}
+
+.footer {
+    height: 90px;
+}
+
+#user-img {
+    height: 500px;
+}
+

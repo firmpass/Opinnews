@@ -1,12 +1,19 @@
 {
+<<<<<<< HEAD
   "name": "opinnews",
   "version": "1.0.0",
   "description": "Doing something about fake news!",
+=======
+  "name": "project2-test",
+  "version": "1.0.0",
+  "description": "",
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+<<<<<<< HEAD
   "repository": {
     "type": "git",
     "url": "git+https://github.com/firmpass/Opinnews.git"
@@ -24,14 +31,25 @@
     "url": "https://github.com/firmpass/Opinnews/issues"
   },
   "homepage": "https://github.com/firmpass/Opinnews#readme",
+=======
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.10",
     "sequelize-cli": "^4.0.0",
     "volleyball": "^1.5.0"
+=======
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0"
+>>>>>>> 09bc7515259420524a44025fbb399859bf60f044
   }
 }
