@@ -1,11 +1,26 @@
+.navbar-default {
+    background-color: black;
+    border-bottom-color: #6002EE;
+}
 
-
-#superCtn {
-    background: #1F1C2C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.container-float {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
+
+h1 {
+    color: white;
+    text-shadow: 2px 2px 5px #6002EE;
+    
+}
+
+#list1 {
+    padding: 10px;
+    box-shadow: 3px 4px ;
+}
+
 #brand {
     font-family:'Chango', cursive;
 }
