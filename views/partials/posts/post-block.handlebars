@@ -1,15 +1,14 @@
-<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+<a href="#" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
     <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ title }}</h5>
+        <h5 class="mb-1">{{ user }}</h5>
         <small class="text-muted">{{ createdAt }}</small>
     </div>
     <p class="mb-1">{{ body }}</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-
+    <br>
     <div class="text-center">
-        <button id="true-news-button" type="button" class="btn btn-success">True</button>
-        <button id="questionable-news-button" type="button" class="btn btn-warning">?</button>
-        <button id="fake-news-button" type="button" class="btn btn-danger">Fake</button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-success legit-news-button">True</button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-warning questionable-news-button">?</button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-danger fake-news-button">Fake</button>
     </div>
 </a>
 

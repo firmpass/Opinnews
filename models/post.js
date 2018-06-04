@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var Post = sequelize.define("Post", {
-        title: {
+        user: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -11,6 +11,18 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
+        },
+        fakeNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        legitNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        seemsLegitNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
     });
 
