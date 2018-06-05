@@ -9,7 +9,7 @@ const router = express.Router();
 const env = {
     AUTH0_CLIENT_ID: '3IXjrTHrpfEpFLMsfASoLUhrU9SEDSAN',
     AUTH0_DOMAIN: 'canbat.auth0.com',
-    AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://localhost:8081/callback'
+    AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://localhost:8080/callback'
 };
 
 /* GET home page. */
@@ -19,12 +19,12 @@ router.get('/', ensureLoggedIn(), function(req, res, next) {
 
 // Perform the login
 router.get('/login', passport.authenticate('auth0', {
-    clientID: env.AUTH0_CLIENT_ID,
-    domain: env.AUTH0_DOMAIN,
-    redirectUri: env.AUTH0_CALLBACK_URL,
-    responseType: 'code',
-    audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
-    scope: 'openid'
+        clientID: env.AUTH0_CLIENT_ID,
+        domain: env.AUTH0_DOMAIN,
+        redirectUri: env.AUTH0_CALLBACK_URL,
+        responseType: 'code',
+        audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
+        scope: 'openid'
     }),
     function(req, res) {
         res.redirect("/");
@@ -51,18 +51,18 @@ router.get('/failure', function(req, res) {
     res.redirect("/");
 });
 
-router.get('/user-post', ensureLoggedIn(), (req, res) => {
+router.get('/main', ensureLoggedIn(), (req, res) => {
     console.log("user-post route successful");
-    res.render('../views/user-post.handlebars');
+    res.render('../views/layouts/main.handlebars');
 });
 //Getting all userPosts
-router.get('/userPosts', ensureLoggedIn(), (req, res, next) => {
+router.get('/main', ensureLoggedIn(), (req, res, next) => {
     console.log("returning all userPosts from user-posts.js");
     res.send(userPosts);
 });
 
 //Getting userPosts by "id"
-router.get('/userPosts/:id', ensureLoggedIn(), (req, res, next) => {
+router.get('/main/:id', ensureLoggedIn(), (req, res, next) => {
     const id = req.params.id;
     const query = req.query;
     const userpost = userPosts[id];
@@ -75,12 +75,12 @@ router.get('/userPosts/:id', ensureLoggedIn(), (req, res, next) => {
         Object.keys(query).forEach((key) => {
             responses[key] = userpost[key]
         });
-        //http://localhost:8081/userPosts/0?id&name&newPost <- Use in postman
+        //http://localhost:8080/userPosts/0?id&name&newPost <- Use in postman
         res.send(responses);
     }
 });
 //updating userpost
-router.put('userPosts/:id', ensureLoggedIn(), (req, res, next) => {
+router.put('main/:id', ensureLoggedIn(), (req, res, next) => {
     const userpost = userPosts[req.params.id];
     console.log(req.body);
     Object.assign(userpost, req.body);

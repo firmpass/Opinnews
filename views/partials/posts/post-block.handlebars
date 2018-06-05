@@ -1,0 +1,15 @@
+<a href="#" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ user }}</h5>
+        <small class="text-muted">{{ createdAt }}</small>
+    </div>
+    <p class="mb-1">{{ body }}</p>
+    <br>
+    <div class="text-center">
+        <button data-postid="{{ id }}" type="button" class="btn btn-success legit-news-button">True</button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-warning questionable-news-button">?</button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-danger fake-news-button">Fake</button>
+    </div>
+</a>
+
+

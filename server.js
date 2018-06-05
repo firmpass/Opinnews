@@ -18,7 +18,7 @@ const Auth0Strategy = require('passport-auth0');
 const db = require('./models');
 
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 const routes = require('./routes/index.js');
 
 // Configure Passport to use Auth0
@@ -27,7 +27,7 @@ const strategy = new Auth0Strategy(
         domain: 'canbat.auth0.com',
         clientID: '3IXjrTHrpfEpFLMsfASoLUhrU9SEDSAN',
         clientSecret: 'fUEE7l78zWDF1zrSnZpIkDfiaz062Y7_EZc7kJGa1xmR7oH9_Rg3XdXND2TKnQmw',
-        callbackURL: 'http://localhost:8081/callback'
+        callbackURL: 'http://localhost:8080/callback'
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
         return done(null, profile);
@@ -48,7 +48,7 @@ passport.deserializeUser(function(user, done) {
 const app = express();
 
 
-// Requiring our models for syncing 
+// Requiring our models for syncing
 // ***HERE***
 let connection = new Sequelize('postDB', 'localhost', 'root',{
     dialect: 'mysql'
@@ -112,16 +112,14 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+require("./routes/post-api-routes")(app);
+require("./routes/html-routes")(app);
 
-db.sequelize.sync().then(function() {
-    console.log("sequelize db sync connected.");
-    app.listen(PORT, () => {
+
+db.sequelize.sync({ force: true }).then(function() {
+    app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
-        // db.sync()
-        //     .then(message => {
-        //         console.log("and db is synced");
-        //     })
-    })
+    });
 });
 
 
@@ -131,7 +129,7 @@ db.sequelize.sync().then(function() {
 //     const connection = mysql.createConnection({
 //         host: 'localhost',
 //         user: 'root',
-//         database: 'userDB'                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+//         database: 'userDB'
 //     })
 
 //     connection.query("SELECT * From users", (err, row, fields) => {

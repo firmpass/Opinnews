@@ -1,34 +1,30 @@
-module.exports = function (sequelize, DataTypes) {
-    
-
-
-var Userpost = sequelize.define('Userpost', { 
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
+module.exports = function(sequelize, DataTypes) {
+    var Post = sequelize.define("Post", {
+        user: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            len: [1]
+        },
+        fakeNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        legitNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        seemsLegitNews: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
-    },
-    lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-        }
-    },
-    newPost: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
-  }, {
-      getterMethods: {
-          fullName: () => {
-            return this.firstName + ' ' + this.lastName;
-        
-      }
-  }
-   
-})
-    return Userpost;
-}
+    });
+
+    return Post;
+};
