@@ -1,4 +1,42 @@
-body {
+.navbar-default {
+    background-color: black;
+    border-bottom-color: #6002EE;
+}
+
+.container-float {
+    background: #2980B9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+    font-family: 'Raleway', sans-serif;
+
+}
+
+h1 {
+    color: white;
+    text-shadow: 2px 2px 5px #6002EE;   
+}
+
+h4 {
+    color: white;
+    text-shadow: 2px 2px 5px #6002EE;
+}
+
+h5 {
+    font-weight: bold;
+    color: #6002EE;
+    margin-top: 50px;
+}
+
+
+
+#list1 {
+    padding: 10px;
+    box-shadow: 3px 4px #6002EE;
+}
+
+#brand {
     font-family:'Chango', cursive;
 }
 
@@ -7,7 +45,7 @@ body {
 }
 
 #top-news {
-    height: 350px;
+    height: 250px;
 }
 
 .footer {
@@ -16,4 +54,12 @@ body {
 
 #user-img {
     height: 500px;
+}
+
+.img {
+    height: 400px;
+}
+
+body {
+    height: 100%;
 }

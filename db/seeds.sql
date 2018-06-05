@@ -1,1 +1,0 @@
-INSERT INTO contributor (name, legit, seemslegit, fakenews, post) VALUES ('James Connor', 3, 5, 14, 20);

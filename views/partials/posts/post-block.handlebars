@@ -1,0 +1,15 @@
+<a href="#"  id="list1" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ user }}</h5>
+        <small class="text-muted">{{ createdAt }}</small>
+    </div>
+    <p class="mb-1">{{ body }}</p>
+    <br>
+    <div id="post" class="text-center">
+        <button data-postid="{{ id }}" type="button" class="btn btn-success legit-news-button">Legit <span class="badge badge-light">{{ this.legitNews }}</span></button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-primary questionable-news-button">SeemsLegit <span class="badge badge-light">{{ this.seemsLegitNews }}</span></button>
+        <button data-postid="{{ id }}" type="button" class="btn btn-danger fake-news-button">FakeNews <span class="badge badge-light">{{ this.fakeNews }}</span></button>
+    </div>
+</a>
+
+

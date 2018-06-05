@@ -1,66 +1,142 @@
 <div class="container-float">
     <nav class="navbar navbar-dark bg-dark">
-        <a id=brand class="navbar-brand" href="#"><h1>OpinNEWS</h1></a>
+        <a id="brand" class="navbar-brand" href="#"><h1>OpinNEWS <i class="fab fa-connectdevelop"></i></h1></a>
     </nav>
     <div class="col-12 row mt-5">
-        <div class="card col-md-3">
-            <img id="user-img" class="card-img-top" src="./img/person.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row  ml-3">
-                <div class="card col-12">
-                    <img id="top-news" class="card-img-top" src="./img/news-placeholder.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="col-md-3">
+                <div id="form1" class="card col-12">
+                    
+                    <h5><i class="far fa-address-card"></i> Post A New Article</h5>
+                    <div action="/add" method="POST" class="form-group">
+                        <label for="usr" style="color:#1DE9B6">Article Author:</label>
+                        <input type="text" class="form-control" id="article-author">
+                        <label for="comment" style="color:#1DE9B6" class="mt-3">Article Body:</label>
+                        <textarea class="form-control" rows="5" id="article-body"></textarea>
+                        <button id="add" class="btn btn-success float-right mt-3">Submit Article <i class="fas fa-certificate"></i></button>
                     </div>
                 </div>
-            </div> <!-- headline container -->
-            <div class="row">
-                <div class="col-12 mt-3  ml-3">
+                <div style="margin-top:20px;">
+                <h5 style="text-align:center;">Coming soon to all platforms...</h5>
+                <p>
+                <h2 style="text-align:center;">
+                    <i style="text-align:center; color:#64DD17" class="fab fa-android">
+                    </i> <i style="color:red;" class="fab fa-apple"></i>
+                    <i style="color:orange;" class="fab fa-buysellads"></i>
+                    <i style="color:#4FC3F7" class="fab fa-cc-paypal"></i>
+                    <i style="color:blue;" class="fab fa-facebook-square"></i>
+                </h2>
+                
+                </p>
+
+                </div>
+
+                
+        </div> 
+        <div class="col-md-7">
+           <!-- headline container -->
+        <h4 style="text-align:center">Post and Rate articles in our OpinNews community to help expose fakeNews in a fun way. <i class="far fa-comment"></i></h4>
+                <div class="col-12 mb-0  ml-0">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
-                            <small>Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small class="text-muted">3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small class="text-muted">3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-                                risus varius blandit.</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
+                        {{# each posts }}
+                            {{> posts/post-block }}
+                        {{/each}}
                     </div>
-                </div> <!-- " news" list items -->
-            </div> <!-- list item row -->
+                </div> 
+                <div class="card col-12" style="margin-top:10px;">
+                        <div class="card-body">
+                                <p class="card-text" style="text-align: center">Let's have fun blasting fakeNews.</p>
+                            </div>
+                    <img id="top-news" style="height:200px;" class="card-img-top" src="./assets/img/fakenews.jpg" alt="Card image cap">
+                </div><!-- " news" list items -->
+            <!-- list item row -->
         </div> <!--content container -->
+        <div class="col-md-2">
+                
+                    <img class="img" src="./assets/img/ad2.jpg" alt="">
+            </div>
+        </div>
     </div>
 </div> <!-- main container -->
+
+<script>
+    $(document).ready(function() {
+
+
+        var sendData = function (event) {
+            const body = $("#article-body").val();
+            console.log(body);
+            const user = $("#article-author").val();
+            console.log(user);
+            event.preventDefault(); // stop it
+            $.ajax({
+                url: '/api/posts',
+                method: 'POST',
+                data: {
+                    user: user,
+                    body: body,
+
+                }
+            })
+                    .then(function () {
+                        $("#article-body").val('');
+                        $("#article-author").val('');
+                        window.location.reload("/");
+                    })
+                    .catch(function () {
+                        alert('Sorry it did not work');
+                    }); //
+        };
+
+
+        var updateTrueRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/true',
+                method: 'PUT',
+                data: {
+                    id: id
+                }
+
+            }).then(function(data) {
+                window.location.reload("/");
+            });
+        };
+
+        var updateFakeRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/fake',
+                method: 'PUT',
+
+            }).then(function(data) {
+                window.location.reload("/");
+            })
+        };
+
+        var updateQuestionableRank = function (event) {
+            var id = $(this).attr("data-postid");
+            console.log(id);
+            console.log("wtf");
+            event.preventDefault();
+            $.ajax({
+                url: 'api/posts/' + id + '/questionable',
+                method: 'PUT',
+            }).then(function(data) {
+                window.location.reload("/");
+            });
+        };
+
+        $(".legit-news-button").on('click', updateTrueRank);
+        $(".fake-news-button").on('click', updateFakeRank);
+        $(".questionable-news-button").on('click', updateQuestionableRank);
+        $('#add').on('click', sendData);
+    });
+
+
+</script>
