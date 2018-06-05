@@ -60,6 +60,6 @@ h5 {
     height: 400px;
 }
 
-body {
+html, body {
     height: 100%;
 }
