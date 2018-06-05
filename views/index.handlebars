@@ -22,16 +22,16 @@
         </div>
         <div class="col-md-6">
             <div class="row  ml-3">
-                <div class="card col-12">
-                    <h5> Post A New Article</h5>
-                    <div action="/add" method="POST" class="form-group">
-                        <label for="usr">Article Author:</label>
-                        <input type="text" class="form-control" id="article-author">
-                        <label for="comment" class="mt-3">Article Body:</label>
-                        <textarea class="form-control" rows="5" id="article-body"></textarea>
-                        <button id="add" class="btn float-right mt-3">Submit Article</button>
+                    <div class="card col-12">
+                        <h5> Post A New Article</h5>
+                        <div action="/add" method="POST" class="form-group">
+                            <label for="usr">Article Author:</label>
+                            <input type="text" class="form-control" id="article-author">
+                            <label for="comment" class="mt-3">Article Body:</label>
+                            <textarea class="form-control" rows="5" id="article-body"></textarea>
+                            <button id="add" class="btn float-right mt-3">Submit Article</button>
+                        </div>
                     </div>
-                </div>
             </div> <!-- headline container -->
             <div class="row">
                 <div class="col-12 mt-3  ml-3">
@@ -92,8 +92,8 @@
                 data: {
                     id: id
                 }
-
             });
+
         };
 
         var updateFakeRank = function (event) {
