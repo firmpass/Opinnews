@@ -100,6 +100,8 @@
                     id: id
                 }
 
+            }).then(function(data) {
+                window.location.reload("/");
             });
         };
 
@@ -112,7 +114,9 @@
                 url: 'api/posts/' + id + '/fake',
                 method: 'PUT',
 
-            });
+            }).then(function(data) {
+                window.location.reload("/");
+            })
         };
 
         var updateQuestionableRank = function (event) {
@@ -123,6 +127,8 @@
             $.ajax({
                 url: 'api/posts/' + id + '/questionable',
                 method: 'PUT',
+            }).then(function(data) {
+                window.location.reload("/");
             });
         };
 

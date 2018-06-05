@@ -1,8 +1,5 @@
 {
-  "name": "opinnews",
-  "version": "1.0.0",
-  "description": "Doing something about fake news!",
-  "name": "project2-test",
+  "name": "Opinnews",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,22 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/firmpass/Opinnews.git"
   },
-  "keywords": [
-    "news",
-    "fake",
-    "news",
-    "opinion",
-    "opinnews"
-  ],
-  "author": "Eric \"ET\" Thornton, Dustin Wright, Jack Lin",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/firmpass/Opinnews/issues"
   },
   "homepage": "https://github.com/firmpass/Opinnews#readme",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
@@ -38,6 +26,6 @@
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.10",
     "sequelize-cli": "^4.0.0",
-    "volleyball": "^1.5.0"
+    "volleyball": "^1.5.1"
   }
 }

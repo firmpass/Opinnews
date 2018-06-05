@@ -17,6 +17,9 @@ module.exports = function (app) {
         db.Post.create({
             user: req.body.user,
             body: req.body.body,
+            fakeNews: req.body.fakeNews,
+            seemsLegitNews: req.body.seemsLegitNews,
+            fakeNews: req.body.fakeNews
         })
             .then(function (dbPost) {
                 res.json(dbPost);
