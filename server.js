@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var exphbs = require("express-handlebars");
 var volleyball = require("volleyball");
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
 
